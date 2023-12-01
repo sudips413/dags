@@ -23,11 +23,11 @@ spark_submit_task = SparkSubmitOperator(
     task_id='spark_submit_task',
     conn_id='spark',  # specify the connection id for your Spark cluster
     application="s3a://dn-apps-49baf552-2b21-40ba-832f-2392a4226235/scripts/spark/py/python_usecase.py",  # specify the path to your Spark script
-    total_executor_cores='2',
-    executor_cores='1',
-    executor_memory='2g',
-    num_executors='3',
-    driver_memory='2g',
+    # total_executor_cores='2',
+    # executor_cores='1',
+    # executor_memory='2g',
+    # num_executors='3',
+    # driver_memory='2g',
     name='usecase_anish',
     verbose=False,
     conf={
@@ -47,8 +47,8 @@ spark_submit_task = SparkSubmitOperator(
         'spark.hadoop.fs.s3a.secret.key': 'DdvWp9DIhlpMTQ0ZYC9MOJO5NFVGcpG24BhN2N2P',
         'spark.hadoop.fs.s3a.path.style.access': 'true',
         'spark.hadoop.fs.s3a.connection.ssl.enabled': 'false',
-        'spark.executorEnv.JAVA_HOME': '/bin/java',
-        'spark.driverEnv.JAVA_HOME': '/bin/java'
+        # 'spark.executorEnv.JAVA_HOME': '/bin/java',
+        # 'spark.driverEnv.JAVA_HOME': '/bin/java'
     },
     dag=dag,
 )
