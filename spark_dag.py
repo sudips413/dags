@@ -21,7 +21,7 @@ dag = DAG(
 # Define the SparkSubmitOperator task
 spark_submit_task = SparkSubmitOperator(
     task_id='spark_submit_task',
-    conn_id='dn-spark',  # specify the connection id for your Spark cluster
+    conn_id='spark',  # specify the connection id for your Spark cluster
     application="s3a://dn-apps-49baf552-2b21-40ba-832f-2392a4226235/scripts/spark/py/python_usecase.py",  # specify the path to your Spark script
     name='Usecase Anish',
     verbose=True,
