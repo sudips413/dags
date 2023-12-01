@@ -41,7 +41,8 @@ spark_submit_task = SparkSubmitOperator(
         'spark.hadoop.fs.s3a.access.key': 'F2TLWGDKJNRUCPE3XZ2B',
         'spark.hadoop.fs.s3a.secret.key': 'DdvWp9DIhlpMTQ0ZYC9MOJO5NFVGcpG24BhN2N2P',
         'spark.hadoop.fs.s3a.path.style.access': 'true',
-        'spark.hadoop.fs.s3a.connection.ssl.enabled': 'false'
+        'spark.hadoop.fs.s3a.connection.ssl.enabled': 'false',
+        'spark.executorEnv.JAVA_HOME': '/usr/bin/java'
     },
     dag=dag,
 )
