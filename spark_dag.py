@@ -24,7 +24,7 @@ spark_submit_task = SparkSubmitOperator(
     conn_id='spark',  # specify the connection id for your Spark cluster
     application="s3a://dn-apps-49baf552-2b21-40ba-832f-2392a4226235/scripts/spark/py/python_usecase.py",  # specify the path to your Spark script
     name='usecase_anish',
-    verbose=True,
+    verbose=False,
     conf={
         # 'spark.master': 'k8s://https://api.devbg.ooredoo.ps:6443',
         # 'spark.deploy-mode': 'cluster',
