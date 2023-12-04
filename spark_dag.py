@@ -5,7 +5,7 @@ from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOpe
 # Define your default_args, adjust them as per your requirements
 default_args = {
     'owner': 'airflow',
-    'start_date': datetime(2023, 12, 1),
+    'start_date': datetime(2023, 12, 4),
     # 'retries': 1,
     # 'retry_delay': timedelta(minutes=1),
 }
@@ -17,11 +17,6 @@ dag = DAG(
     description='A DAG to test spark-submit command in usecase',
     schedule_interval='@daily',  # adjust the schedule_interval as per your requirements
 )
-
-# URLs for the Hadoop AWS and AWS SDK JAR files
-# hadoop_aws_url = "https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar"
-# aws_sdk_url = "https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar"
-
 
 # Define the SparkSubmitOperator task
 spark_submit_task = SparkSubmitOperator(
@@ -36,8 +31,6 @@ spark_submit_task = SparkSubmitOperator(
     name='usecase_anish',
     verbose=False,
     conf={
-        # 'spark.master': 'k8s://https://api.devbg.ooredoo.ps:6443',
-        # 'spark.deploy-mode': 'cluster',
         'spark.executor.instances': '3',
         'spark.kubernetes.container.image': 'quay.io/dlytica_dev/spark-new/spark-py:v2',
         'spark.kubernetes.container.image.pullPolicy': 'IfNotPresent',
@@ -51,10 +44,7 @@ spark_submit_task = SparkSubmitOperator(
         'spark.hadoop.fs.s3a.access.key': 'F2TLWGDKJNRUCPE3XZ2B',
         'spark.hadoop.fs.s3a.secret.key': 'DdvWp9DIhlpMTQ0ZYC9MOJO5NFVGcpG24BhN2N2P',
         'spark.hadoop.fs.s3a.path.style.access': 'true',
-        'spark.hadoop.fs.s3a.connection.ssl.enabled': 'false',
-        # 'spark.jars': f'{hadoop_aws_url},{aws_sdk_url}',
-        # 'spark.executorEnv.JAVA_HOME': '/bin/java',
-        # 'spark.driverEnv.JAVA_HOME': '/bin/java'
+        'spark.hadoop.fs.s3a.connection.ssl.enabled': 'false'
     },
     dag=dag,
 )
