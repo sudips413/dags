@@ -42,7 +42,7 @@ spark_submit_task = SparkSubmitOperator(
         'spark.kubernetes.container.image': 'quay.io/dlytica_dev/spark-new/spark-py:v2',
         'spark.kubernetes.container.image.pullPolicy': 'IfNotPresent',
         'spark.kubernetes.container.image.pullSecrets': 'dlytica-dev-pull-secret',
-        'spark.kubernetes.authenticate.driver.serviceAccountName': 'system:serviceaccount:dn-spark:dn-spark-sa',
+        'spark.kubernetes.authenticate.driver.serviceAccountName': 'dn-spark-sa',
         'spark.kubernetes.namespace': 'dn-spark',
         'spark.kubernetes.local.dirs.tmpfs': 'true',
         'spark.eventLog.enabled': 'true',
