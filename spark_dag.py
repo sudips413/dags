@@ -56,6 +56,7 @@ spark_submit_task = SparkSubmitOperator(
         # 'spark.executorEnv.JAVA_HOME': '/bin/java',
         # 'spark.driverEnv.JAVA_HOME': '/bin/java'
     },
+    jars=[hadoop_aws_url, aws_sdk_url],
     dag=dag,
 )
 
