@@ -10,7 +10,7 @@ default_args = {
 
 # Define your DAG
 dag = DAG(
-    'anish_spark_submit_dag',
+    'test_spark_dag',
     default_args=default_args,
     description='A DAG to test spark-submit command in usecase',
     schedule_interval='@daily',  # adjust the schedule_interval as per your requirements
