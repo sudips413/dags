@@ -19,8 +19,8 @@ dag = DAG(
 )
 
 # URLs for the Hadoop AWS and AWS SDK JAR files
-hadoop_aws_url = "https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar"
-aws_sdk_url = "https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar"
+# hadoop_aws_url = "https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar"
+# aws_sdk_url = "https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar"
 
 
 # Define the SparkSubmitOperator task
@@ -52,11 +52,10 @@ spark_submit_task = SparkSubmitOperator(
         'spark.hadoop.fs.s3a.secret.key': 'DdvWp9DIhlpMTQ0ZYC9MOJO5NFVGcpG24BhN2N2P',
         'spark.hadoop.fs.s3a.path.style.access': 'true',
         'spark.hadoop.fs.s3a.connection.ssl.enabled': 'false',
-        'spark.jars': f'{hadoop_aws_url},{aws_sdk_url}',
+        # 'spark.jars': f'{hadoop_aws_url},{aws_sdk_url}',
         # 'spark.executorEnv.JAVA_HOME': '/bin/java',
         # 'spark.driverEnv.JAVA_HOME': '/bin/java'
     },
-    jars=[hadoop_aws_url, aws_sdk_url],
     dag=dag,
 )
 
