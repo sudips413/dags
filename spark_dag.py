@@ -12,17 +12,17 @@ default_args = {
 
 # Define your DAG
 dag = DAG(
-    'anish_spark_submit_dag',
+    'spark_usecase_dag',
     default_args=default_args,
-    description='A DAG to test spark-submit command in usecase',
+    description='A DAG to run spark usecase',
     schedule_interval='@daily',  # adjust the schedule_interval as per your requirements
 )
 
 # Define the SparkSubmitOperator task
 spark_submit_task = SparkSubmitOperator(
-    task_id='spark_submit_task',
+    task_id='spark_usecase_task',
     conn_id='spark',  # specify the connection id for your Spark cluster
-    application="s3a://dn-apps-49baf552-2b21-40ba-832f-2392a4226235/scripts/spark/py/python_usecase.py",  # specify the path to your Spark script
+    application="s3a://dn-apps-a6636dd9-f954-48ef-a17a-2f6c07f1da1c/scripts/spark/py/python_usecase.py",  # specify the path to your Spark script
     # total_executor_cores='2',
     # executor_cores='1',
     # executor_memory='2g',
@@ -32,17 +32,16 @@ spark_submit_task = SparkSubmitOperator(
     verbose=False,
     conf={
         'spark.executor.instances': '3',
-        'spark.kubernetes.container.image': 'quay.io/dlytica_dev/spark-new/spark-py:v2',
+        'spark.kubernetes.container.image': 'quay.io/dlytica_dev/spark:v1',
         'spark.kubernetes.container.image.pullPolicy': 'IfNotPresent',
-        'spark.kubernetes.container.image.pullSecrets': 'dlytica-dev-pull-secret',
         'spark.kubernetes.authenticate.driver.serviceAccountName': 'dn-spark-sa',
         'spark.kubernetes.namespace': 'dn-spark',
         'spark.kubernetes.local.dirs.tmpfs': 'true',
         'spark.eventLog.enabled': 'true',
-        'spark.eventLog.dir': 's3a://dn-apps-49baf552-2b21-40ba-832f-2392a4226235/logs/spark/',
-        'spark.hadoop.fs.s3a.endpoint': 'ocs-storagecluster-cephobjectstore-openshift-storage.apps.devbg.ooredoo.ps',
-        'spark.hadoop.fs.s3a.access.key': 'F2TLWGDKJNRUCPE3XZ2B',
-        'spark.hadoop.fs.s3a.secret.key': 'DdvWp9DIhlpMTQ0ZYC9MOJO5NFVGcpG24BhN2N2P',
+        'spark.eventLog.dir': 's3a://dn-apps-a6636dd9-f954-48ef-a17a-2f6c07f1da1c/logs/spark/',
+        'spark.hadoop.fs.s3a.endpoint': 's3-openshift-storage.apps.devbg.ooredoo.ps',
+        'spark.hadoop.fs.s3a.access.key': '4rf1yAf6EyzBiNV3skKJ',
+        'spark.hadoop.fs.s3a.secret.key': '+wlSneW2cq1TejTOkQEMnb0GIBbMRNcS/tz+Idw8',
         'spark.hadoop.fs.s3a.path.style.access': 'true',
         'spark.hadoop.fs.s3a.connection.ssl.enabled': 'false'
     },
